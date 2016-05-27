@@ -1,0 +1,67 @@
+<!DOCTYPE>
+<html>
+        <head>
+            <title></title>
+            <link rel="stylesheet" type="text/css" href="style.css">
+        </head>
+        <body>
+            <div ng-app="mainApp" ng-controller="mainController">
+                <h1>Cree Element de Module</h1>
+                <label>intitulee</label>
+                <input type="text" ng-model="req.intitulee"/>
+                <br>
+                <label>partager avec</label>
+                <select ng-options="prof.nom for prof in profs" ng-model="sharedUser"></select>
+                <button ng-click="add()">add</button>
+                <br>
+                <div ng-repeat="user in req.targetUsers">
+                    <label>{{user.nom}}</label>
+                    <select ng-model="user.permision" ng-init="user.permision = 'r'">
+                        <option value="r">Read</option>
+                        <option value="w">Write</option>
+                    </select>
+                    <button ng-click="deleteU($index)">delete</button>
+                </div>
+                <br>
+                <p>{{req}}</p>
+                <button ng-click="create()">Create</button>
+                <br>
+                <br>
+                <h1>partager Element de Module</h1>
+                <select ng-options="eModule.intitulee for eModule in eModules" ng-model="req.eModuleId"></select>
+                <br>
+                <label>partager avec</label>
+                <select ng-options="prof.nom for prof in profs" ng-model="sharedUser"></select>
+                <button ng-click="add()">add</button>
+                <br>
+                <div ng-repeat="user in req.targetUsers">
+                    <select ng-model="user.permision" ng-init="user.permision = 'r'">
+                        <option value="r">Read</option>
+                        <option value="w">Write</option>
+                    </select>
+                    <button ng-click="deleteU($index)">delete</button>
+                </div>
+                <br>
+                <p>{{shareReq}}</p>
+                <button ng-click="share()">Create</button>
+            <br>
+            <br>
+            <h1>get Elements Modules</h1>
+            <input type="text" ng-model="get.req.query.intitulee"/>
+            <input type="text" ng-model="get.req.fields"/>
+            <h2>{{get.req}}</h2>
+            <button ng-click="getb()">Get</button>
+            <br>
+            <h2>{{res.data}}</h2>
+            
+            <br>
+            <h1>delete Element Module</h1>
+            <select ng-options="eModule.intitulee for eModule in eModules" ng-model="delete.req.eModuleId"></select>
+            <button ng-click="deleteb()">delete</button>
+            <h1>{{delete.req.eModuleId}}</h1>
+            </div>
+            
+            <script type="text/javascript" src="angular.min.js"></script>
+            <script type="text/javascript" src="controller.js"></script>
+        </body>
+</html>
